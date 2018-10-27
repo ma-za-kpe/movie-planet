@@ -7,12 +7,13 @@ var mongoose = require('mongoose');
 require('dotenv/config');
 require('./models/movie');
 require('./models/seller');
+require('./models/buyer');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
 var sellersRouter = require('./routes/seller');
-// var sellersRouter = require('./routes/seller');
+var buyersRouter = require('./routes/buyer');
 
 var app = express();
 
@@ -40,7 +41,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
 app.use('/sellers', sellersRouter);
-// app.use('/sellers', sellersRouter);
+app.use('/buyers', buyersRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
