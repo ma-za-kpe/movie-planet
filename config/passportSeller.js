@@ -1,14 +1,14 @@
 var passport = require('passport');
-var Buyer = require('../models/buyer');
+var Seller = require('../models/seller');
 var LocalStrategy = require('passport-local');
 
-passport.serializeUser(function(buyer, done) {
-  done(null, buyer.id);
+passport.serializeUser(function(seller, done) {
+  done(null, seller.id);
 });
 
 passport.deserializeUser(function(id, done) {
-  Buyer.findById(id, function(err, buyer) {
-    done(err, buyer);
+  Seller.findById(id, function(err, seller) {
+    done(err, seller);
   });
 });
 
@@ -26,21 +26,21 @@ passport.use('local-register', new LocalStrategy({
     });
     return done(null, false, req.flash('error', messages))
   }
-  Buyer.findOne({ 'email': email }, function(err, buyer) {
+  Seller.findOne({ 'email': email }, function(err, seller) {
     if (err) {
       return done(err);
     }
-    if (buyer) {
+    if (seller) {
       return done(null, false, { message: 'This email is already used'})
     }
-    var newBuyer = new Buyer();
-    newBuyer.email = email;
-    newBuyer.password = newBuyer.encryptPassword(passport);
-    newBuyer.save(function(err, result) {
+    var newSeller = new Seller();
+    newSeller.email = email;
+    newSeller.password = newSeller.encryptPassword(passport);
+    newSeller.save(function(err, result) {
       if (err) {
         return done(err);
       }
-      return done(null, newBuyer);
+      return done(null, newSeller);
     })
   })
 }));
@@ -59,17 +59,17 @@ passport.use('local-login', new LocalStrategy({
     });
     return done(null, false, req.flash('error', messages))
   }
-  Buyer.findOne({ 'email': email }, function(err, buyer) {
+  Seller.findOne({ 'email': email }, function(err, seller) {
     if (err) {
       return done(err);
     }
-    if (!buyer) {
+    if (!seller) {
       return done(null, false, { message: 'No user found.'})
     }
-    // valid password comes from buyer model
-    if(!buyer.validPassword(password)) {
+    // valid password comes from seller model
+    if(!seller.validPassword(password)) {
       return done(null, false, { message: 'Wrong password.'})
     }
-    return done(null, buyer);
+    return done(null, seller);
   })
 }))
