@@ -19,6 +19,10 @@ var app = express();
 // connect to mlab database
 mongoose.connect(process.env.MLAB_URL, {useNewUrlParser: true});
 
+// add passport local strategy configuration
+require('./config/passportBuyer');
+require('./config/passportSeller');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');

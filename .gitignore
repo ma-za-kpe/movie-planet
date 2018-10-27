@@ -1,3 +1,5 @@
+
+=======
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output
@@ -38,3 +40,4 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+>>>>>>> 8bb4fa6d253382417c0c71f667e177bac279a0ce
