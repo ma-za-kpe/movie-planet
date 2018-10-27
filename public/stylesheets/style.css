@@ -41,3 +41,9 @@ table{
 .checkout{
   margin-top: 20px;
 }
+
+.sellerAdd{
+  color: black;
+  background-color:white;
+  border-left: 2px solid black;
+}
