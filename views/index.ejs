@@ -7,7 +7,7 @@
 
     <!--header layout-->
     <%- include partials/header.ejs %>
-     <!--header layout-->  
+     <!--header layout-->
     </div>
   <!--/.Mask-->
 
@@ -38,7 +38,7 @@
                    <!-- Text -->
                   <p class="card-text"><%= movies[i]['description'] %></p>
                      <!-- Text -->
-                  <p class="card-text"> Price: <%= movies[i]['price'] %></p>
+                  <p class="card-text"> Price: <%= movies[i]['price'] || 1000 %></p>
                   <!-- Button -->
                   <a href="#" class="btn btn-primary">Add</a>
 

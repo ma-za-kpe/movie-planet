@@ -12,6 +12,11 @@ router.get('/', async(req, res, next) => {
     res.render('index', {movies: movies});
 });
 
+// GET Show add new movie form
+router.get('/add-new-movies', async(req, res, next) => {
+    res.render('addMovieForm');
+});
+
 // Post/create a movie
 router.post('/', async(req, res, next) => {
 
@@ -19,10 +24,11 @@ router.post('/', async(req, res, next) => {
         imageUrl: req.body.imageUrl,
         title: req.body.title,
         description: req.body.description,
-        price: req.body.price
+        price: req.body.price || 1000
     });
     await movie.save();
-    res.send(movie);
+    // res.send(movie);
+    res.redirect('/movies');
   });
 
 //   Update a movie

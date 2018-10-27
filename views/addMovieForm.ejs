@@ -20,27 +20,31 @@
             <div class="row d-flex justify-content-center text-center">
 
                 <!-- Default form login -->
-<form class="text-center border border-light p-5">
+<form class="text-center border border-light p-5" action="/movies/" method="POST">
 
-  <p class="h4 mb-4">Sign in</p>
+  <p class="h4 mb-4">Add new Movie</p>
 
   <!-- Image -->
-  <input type="image" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Image">
+  <input type="text" id="imageUrl" class="form-control mb-4"
+  placeholder="image url" name="imageUrl">
 
   <!-- Title -->
-  <input type="text" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Title">
+  <input type="text" id="title" name="title" class="form-control mb-4"
+  placeholder="Movie Title">
 
   <!-- Description -->
-  <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Description">
+  <input type="text" id="description" name="description" class="form-control mb-4"
+  placeholder="Movie description">
 
   <!-- price -->
-  <input type="number" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="price">
+  <input type="number" id="price" name="price" class="form-control mb-4"
+  placeholder="price" value="1000" disabled>
 
   <!-- Sign in button -->
   <button class="btn btn-info btn-block my-4" type="submit">add movie / series</button>
 
 </form>
-<!-- Default form login -->               
+<!-- Default form login -->
 
             </div>
 
