@@ -3,11 +3,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+// connect to local mongodb database
+mongoose.connect('mongodb://localhost:27017/movie-planet');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
