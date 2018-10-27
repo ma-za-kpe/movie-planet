@@ -20,15 +20,16 @@
             <thead>
               <td>All Movies</td>
             </thead>
-            <tr>
+            <tr class="d-flex flex-wrap justify-content-center">
 
               <% for (let i = 0; i < movies.length; i++) { %>
               <td>
                 <!-- Card -->
-                <div class="card">
+                <div class="card d-flex flex-wrap">
 
                 <!-- Card image -->
-                <img class="card-img-top" src="<%= movies[i]['imageUrl'] %>" alt="Card image cap">
+                <img class="card-img-top img-fluid" src="<%= movies[i]['imageUrl'] %>"
+                alt="Card image cap">
 
                 <!-- Card content -->
                 <div class="card-body">

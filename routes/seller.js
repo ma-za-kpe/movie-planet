@@ -8,7 +8,7 @@ var  Seller = mongoose.model('Seller');
 // get sellers
 router.get('/', async(req, res, next) => {
 
-    const sellers = await Seller.find().sort('title')
+    const sellers = await Seller.find().sort('email')
     res.send(sellers);
   });
 
