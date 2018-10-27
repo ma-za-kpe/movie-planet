@@ -13,7 +13,7 @@ passport.deserializeUser(function(id, done) {
 });
 
 // register logic
-passport.use('local-register', new LocalStrategy({
+passport.use('local-register-seller', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
@@ -46,7 +46,7 @@ passport.use('local-register', new LocalStrategy({
 }));
 
 // sign in logic
-passport.use('local-login', new LocalStrategy({
+passport.use('local-login-seller', new LocalStrategy({
   usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
