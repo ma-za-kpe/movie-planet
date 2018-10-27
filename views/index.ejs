@@ -22,36 +22,24 @@
             </thead>
 <<<<<<< HEAD
             <tr>
-              
+
               <% for (let i = 0; i < movies.length; i++) { %>
               <td>
                 <!-- Card -->
                 <div class="card">
 
                 <!-- Card image -->
-<<<<<<< HEAD
-                <img class="card-img-top" src="" alt="Card image cap"></img>
-=======
                 <img class="card-img-top" src="<%= movies[i]['imageUrl'] %>" alt="Card image cap">
->>>>>>> 9f526a4a246347a14df11eda1aa5ce1d14b64079
 
                 <!-- Card content -->
                 <div class="card-body">
 
                   <!-- Title -->
-<<<<<<< HEAD
-                  <h4 class="card-title"><a><%= title %></a></h4>
-                   <!-- Text -->
-                  <p class="card-text"> <%= description %> </p>
-                     <!-- Text -->
-                  <p class="card-text"> Price: <%= price %> </p>
-=======
                   <h4 class="card-title"><a><%= movies[i]['title'] %></a></h4>
                    <!-- Text -->
                   <p class="card-text"><%= movies[i]['description'] %></p>
                      <!-- Text -->
                   <p class="card-text"> Price: <%= movies[i]['price'] %></p>
->>>>>>> 9f526a4a246347a14df11eda1aa5ce1d14b64079
                   <!-- Button -->
                   <a href="#" class="btn btn-primary">Add</a>
 
@@ -59,11 +47,9 @@
 
               </div>
               <!-- Card -->
-              </td>
+</td>
               <% } %>
-              
-              
-        
+
             </tr>
 =======
             
