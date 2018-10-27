@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
+require('dotenv/config');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -11,7 +12,10 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 // connect to local mongodb database
-mongoose.connect('mongodb://localhost:27017/movie-planet');
+// mongoose.connect('mongodb://localhost:27017/movie-planet', {useNewUrlParser: true});
+
+// connect to mlab database
+mongoose.connect(process.env.MLAB_URL, {useNewUrlParser: true});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
