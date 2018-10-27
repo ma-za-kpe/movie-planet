@@ -14,14 +14,18 @@
     <!--header layout-->
 
     <!--Main layout-->
-      <main>
+      <main class="container">
         <table class="table table-hover table-responsive-sm">
           <tbody>
+
             <thead>
               <td>All Movies</td>
             </thead>
-            <tr class="d-flex flex-wrap justify-content-center">
+            <% if (successMsg) { %>
+            <div class="alert alert-success"><%= successMsg %></div>
+          <% } %>
 
+            <tr class="d-flex flex-wrap justify-content-center">
               <% for (let i = 0; i < movies.length; i++) { %>
               <td>
                 <!-- Card -->
