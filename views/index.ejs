@@ -20,33 +20,14 @@
             <thead>
               <td>All Movies</td>
             </thead>
-            <tr>
-              <td>
-                <!-- Card -->
-              <div class="card">
+            
+              <% for(var i=0; i < data.length; i++) { %>
+                <tr>
+                  <td><%= data[i].id %></td>
+                  <td></td>
+                </tr>
+              <% } %>
 
-                <!-- Card image -->
-                <img class="card-img-top" src="" alt="Card image cap"></img>
-
-                <!-- Card content -->
-                <div class="card-body">
-
-                  <!-- Title -->
-                  <h4 class="card-title"><a><%= title %></a></h4>
-                   <!-- Text -->
-                  <p class="card-text"> <%= description %> </p>
-                     <!-- Text -->
-                  <p class="card-text"> Price: <%= price %> </p>
-                  <!-- Button -->
-                  <a href="#" class="btn btn-primary">Add</a>
-
-                </div>
-
-              </div>
-              <!-- Card -->
-              </td>
-        
-            </tr>
           </tbody>
         </table>
       </main>
