@@ -1,8 +1,43 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+html,
+body,
+header,
+#intro {
+    height: 100%;
 }
 
-a {
-  color: #00B7FF;
+#intro {
+    background: url("../images/bg.jpeg")no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+form{
+  color: white;
+}
+
+.fa{
+  width: 50px;
+  height: auto;
+}
+
+.nav{
+  background-color: #003a54;
+}
+
+table{
+  margin-top: 60px;
+}
+
+.register{
+  margin-top: 70px;
+}
+
+.col-4{
+  border-left: 2px solid black;
+}
+
+.checkout{
+  margin-top: 20px;
 }
