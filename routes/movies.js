@@ -7,7 +7,9 @@ const Movie = mongoose.model('Movie');
 router.get('/', async(req, res, next) => {
 
   const movies = await Movie.find().sort('title')
-  res.send(movies);
+//   res.send(movies);
+
+    res.render('index', {movies: movies});
 });
 
 // Post/create a movie
