@@ -22,10 +22,6 @@ form{
   height: auto;
 }
 
-.nav{
-  background-color: #003a54;
-}
-
 table{
   margin-top: 60px;
 }
@@ -43,7 +39,5 @@ table{
 }
 
 .sellerAdd{
-  color: black;
-  background-color:white;
   border-left: 2px solid black;
 }
