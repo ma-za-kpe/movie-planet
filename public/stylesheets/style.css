@@ -44,3 +44,6 @@ table{
 .navbar-toggler{
   background-color: rgba(15, 20, 49, 0.74);
 }
+#hackbit-vote-widget{
+  margin-top: 70px;
+}
