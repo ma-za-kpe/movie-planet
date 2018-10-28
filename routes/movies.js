@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
-const mongoose = require('mongoose');
 const Movie = require('../models/movie');
 const Cart = require('../models/cart');
+const stripe = require('stripe')('sk_test_p4hGcGu7dzVW1Rfhr1LUePHS');
 
 /* GET movies listing. */
 router.get('/', async(req, res, next) => {
@@ -67,11 +67,11 @@ router.post('/', async(req, res, next) => {
 //   });
 
 //   add to cart logic
-router.get('/add-to-cart/:id', async(req, res, next) => {
+router.get('/add-to-cart/:id', (req, res, next) => {
     let movieId = req.params.id;
     let cart = new Cart(req.session.cart ? req.session.cart : {});
 
-    await Movie.findById(movieId, (err, movie) => {
+    Movie.findById(movieId, (err, movie) => {
         if (err) {
             res.redirect('/movies');
         }
@@ -85,7 +85,7 @@ router.get('/add-to-cart/:id', async(req, res, next) => {
 //   go to checkout page
 router.get('/cart', (req, res, next) => {
     if (!req.session.cart) {
-        res.render('cart', {movies: null});
+        return res.render('cart', {movies: null});
     }
     let cart = new Cart(req.session.cart);
     res.render('cart', {movies: cart.generateArray(), totalPrice: cart.totalPrice});
@@ -94,13 +94,32 @@ router.get('/cart', (req, res, next) => {
 // go to checkout page
 router.get('/checkout', (req, res, next) => {
     if (!req.session.cart) {
-        res.redirect('/movies/cart');
+        return res.redirect('/movies/cart');
     }
     let cart = new Cart(req.session.cart);
-    res.render('checkout', {totalPrice: cart.totalPrice});
+    var errMsg = req.flash('error')[0];
+    res.render('checkout', {totalPrice: cart.totalPrice, errMsg: errMsg, noError: !errMsg});
 });
 
 router.post('/checkout', (req, res, next) => {
-    res.send('done checking out')
-})
+    if (!req.session.cart) {
+        return res.redirect('/movies/cart');
+      }
+      var cart = new Cart(req.session.cart);
+      stripe.charges.create({
+        amount: cart.totalPrice * 100,
+        currency: "usd",
+        source: req.body.stripeToken, // obtained with Stripe.js
+        description: "Test Charge"
+      }, function(err, charge) {
+        if(err) {
+          req.flash('error', err.message);
+          res.redirect('/movies/checkout');
+        }
+        req.flash('success', 'Successfully bought product!');
+        req.session.cart = null;
+        res.redirect('/movies');
+    });
+});
+
 module.exports = router;

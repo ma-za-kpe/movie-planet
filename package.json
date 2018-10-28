@@ -18,7 +18,8 @@
     "mongoose": "^5.3.7",
     "morgan": "~1.9.0",
     "passport": "^0.4.0",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "stripe": "^6.12.1"
   },
   "devDependencies": {
     "dotenv": "^6.1.0"

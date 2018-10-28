@@ -12,7 +12,13 @@
     <h1 class="mt-2">Checkout</h1>
     <h4>You Total: $ <%= totalPrice %> </h4>
 
-    <form action="movies/checkout" method="POST" id="checkout-form">
+    <% if (noError) { %>
+  <div id="payment-errors" class="alert alert-danger d-none">
+    <%= errMsg %>
+  </div>
+<% } %>
+
+    <form action="/movies/checkout" method="POST" id="checkout-form" style="color:black">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control form-control-sm" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
@@ -52,6 +58,8 @@
       <button type="submit" class="btn btn-success">Buy Now</button>
     </form>
     </div>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+<script type="text/javascript" src="javascripts/checkout.js"></script>
 
 
 </body>
