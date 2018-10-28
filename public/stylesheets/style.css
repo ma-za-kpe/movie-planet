@@ -42,6 +42,7 @@ table{
   border-left: 2px solid black;
 }
 .navbar-toggler{
+  color: aliceblue;
   background-color: rgba(15, 20, 49, 0.74);
 }
 #hackbit-vote-widget{
@@ -51,3 +52,4 @@ table{
 .payments{
   margin-top: 80px;
 }
+
