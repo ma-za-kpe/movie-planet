@@ -29,6 +29,12 @@
             </a>
           </li>
 
+          <% if (login) { %>
+          <li class="nav-item ">
+
+              <a class="nav-link" href="/buyers/logout">logout</a>
+          </li>
+          <% } else { %>
           <li class="nav-item ">
 
               <a class="nav-link" href="/buyers/register">Register</a>
@@ -38,12 +44,13 @@
 
           </li>
           <% } %>
+
           <li class="nav-item ">
               <a class="nav-link" href="/shopping-cart">Shopping Cart <span class="badge badge-secondary">0</span></a>
           </li>
 
 
-1          </li>
+          </li>
           <li class="nav-item ">
             <a class="text-light nav-link sellerAdd unique-color text-dark" href="/movies/add-new-movies">ADD MOVIE</a>
         </li>
