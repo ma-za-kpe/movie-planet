@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
 const Movie = mongoose.model('Movie');
+const Cart = require('../models/cart');
 
 /* GET movies listing. */
 router.get('/', async(req, res, next) => {
@@ -64,5 +65,21 @@ router.get('/:id', async(req, res, next) => {
     }
     res.send(movie);
   });
+
+//   add to cart logic
+router.get('/add-to-cart/:id', async(req, res, next) => {
+    let movieId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    Movie.findById(movieId, (err, movie) => {
+        if (err) {
+            res.redirect('/movies');
+        }
+        cart.add(movie, movie.id);
+        req.session.cart = cart;
+        console.log(req.session.cart);
+        res.redirect('/movies');
+    })
+})
 
 module.exports = router;

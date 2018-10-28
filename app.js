@@ -7,16 +7,17 @@ const mongoose = require('mongoose');
 const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
+const MongoStore = require('connect-mongo')(session);
 require('dotenv/config');
 require('./models/movie');
 require('./models/seller');
 require('./models/buyer');
 
-var moviesRouter = require('./routes/movies');
-var sellersRouter = require('./routes/seller');
-var buyersRouter = require('./routes/buyer');
+const moviesRouter = require('./routes/movies');
+const sellersRouter = require('./routes/seller');
+const buyersRouter = require('./routes/buyer');
 
-var app = express();
+const app = express();
 
 // connect to local mongodb database
 // mongoose.connect('mongodb://localhost:27017/movie-planet', {useNewUrlParser: true});
@@ -38,7 +39,9 @@ app.use(cookieParser());
 app.use(session({
   secret: 'expressseceret',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection }),
+  cookie: { maxAge: 15 * 60 * 1000 } //session expires in 15 min
 }));
 app.use(flash());
 app.use(passport.initialize());
@@ -47,7 +50,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(function(req, res, next) {
   // add a login variable to our views to check if user is logged in
-  res.locals.login = req.isAuthenticated();
+  res.locals.login = req.isAuthenticated(); // passgin the login status to our view
+  res.locals.session = req.session; // passing the session object to our views
   next();
 });
 
