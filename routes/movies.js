@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const mongoose = require('mongoose');
-const Movie = mongoose.model('Movie');
+const Movie = require('../models/movie');
 const Cart = require('../models/cart');
 
 /* GET movies listing. */
@@ -34,44 +34,44 @@ router.post('/', async(req, res, next) => {
 
 //   Update a movie
 
-router.put('/:id', async(req, res, next) => {
+// router.put('/:id', async(req, res, next) => {
 
-    const movie = await Movie.findByIdAndUpdate(req.params.id, {
-        imageUrl: req.body.imageUrl,
-        title: req.body.title,
-        description: req.body.description,
-        price: req.body.price
-    }, {new: true});
-    if (!movie) {
-        return res.status(404).send('Movie with given ID not found');
-    }
-    res.send(movie);
-  });
+//     const movie = await Movie.findByIdAndUpdate(req.params.id, {
+//         imageUrl: req.body.imageUrl,
+//         title: req.body.title,
+//         description: req.body.description,
+//         price: req.body.price
+//     }, {new: true});
+//     if (!movie) {
+//         return res.status(404).send('Movie with given ID not found');
+//     }
+//     res.send(movie);
+//   });
 
 // Delete a movie
-router.delete('/:id', async(req, res, next) => {
-    const movie = await Movie.findByIdAndRemove(req.params.id);
-    if (!movie) {
-        return res.status(404).send('Movie with given ID not found');
-    }
-    res.send(movie);
-  });
+// router.delete('/:id', async(req, res, next) => {
+//     const movie = await Movie.findByIdAndRemove(req.params.id);
+//     if (!movie) {
+//         return res.status(404).send('Movie with given ID not found');
+//     }
+//     res.send(movie);
+//   });
 
 //   Find movie by ID
-router.get('/:id', async(req, res, next) => {
-    const movie = await Movie.findById(req.params.id);
-    if (!movie) {
-        return res.status(404).send('Movie with given ID not found');
-    }
-    res.send(movie);
-  });
+// router.get('/:id', async(req, res, next) => {
+//     const movie = await Movie.findById(req.params.id);
+//     if (!movie) {
+//         return res.status(404).send('Movie with given ID not found');
+//     }
+//     res.send(movie);
+//   });
 
 //   add to cart logic
 router.get('/add-to-cart/:id', async(req, res, next) => {
     let movieId = req.params.id;
     let cart = new Cart(req.session.cart ? req.session.cart : {});
 
-    Movie.findById(movieId, (err, movie) => {
+    await Movie.findById(movieId, (err, movie) => {
         if (err) {
             res.redirect('/movies');
         }
@@ -80,6 +80,11 @@ router.get('/add-to-cart/:id', async(req, res, next) => {
         console.log(req.session.cart);
         res.redirect('/movies');
     })
-})
+});
+
+//   go to checkout page
+router.get('/checkout', (req, res, next) => {
+    res.render('checkout');
+});
 
 module.exports = router;
