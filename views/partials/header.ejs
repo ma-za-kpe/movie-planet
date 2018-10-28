@@ -1,0 +1,79 @@
+
+<nav class="navbar navbar-expand-lg unique-color-dark fixed-top nav ">
+
+    <div class="container">
+  
+      <!-- Navbar brand -->
+
+
+      <a class="navbar-brand font-weight-bold" href="/movies">MOVIE PLANET</a>
+  
+      
+
+      <div class="btn-group">
+        <button  class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+        aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">MENU</button>
+    
+        <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Separated link</a>
+        </div>
+    </div>
+  
+      <!-- Collapsible content -->
+      <div class="collapse navbar-collapse" id="basicExampleNav">
+  
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+
+          <li class="nav-item">
+            <a class="nav-link text-light" href="/movies">Home
+
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+
+          <% if (login) { %>
+          <li class="nav-item ">
+
+              <a class="nav-link" href="/buyers/logout">logout</a>
+          </li>
+          <% } else { %>
+          <li class="nav-item ">
+
+              <a class="nav-link" href="/buyers/register">Register</a>
+          </li>
+          <li class="nav-item ">
+              <a class="nav-link" href="/buyers/login">Login</a>
+
+          </li>
+          <% } %>
+
+          <li class="nav-item ">
+              <a class="nav-link" href="/movies/cart">Shopping Cart <% if (session.cart) { %> <span class="badge badge-secondary"><%=
+              session.cart['totalQty'] %></span> <% } else { %><span></span> <% } %></a>
+          </li>
+
+
+          </li>
+          <li class="nav-item ">
+            <a class="text-light nav-link sellerAdd unique-color text-dark" href="/movies/add-new-movies">ADD MOVIE</a>
+        </li>
+  
+        </ul>
+        <!-- Links -->
+  
+        <form class="form-inline">
+          <div class="md-form my-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+          </div>
+        </form>
+      </div>
+      <!-- Collapsible content -->
+  
+    </div>
+  
+  </nav>

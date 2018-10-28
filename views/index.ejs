@@ -1,11 +1,75 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <%- include partials/head.ejs %>
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+    <!--header layout-->
+    <%- include partials/header.ejs %>
+     <!--header layout-->
+    </div>
+  <!--/.Mask-->
+
+  <!-- vote -->
+    <div class="row">
+      <!-- Button -->
+      <button type="button" class="btn  purple-gradient btn-lg btn-block container"  id="hackbit-vote-widget">VOTE ! VOTE! VOTE! VOTE</button>
+    </div>
+  <!-- vote -->
+
+    <!--Main layout-->
+      <main class="container">
+        <table class="table table-hover table-responsive-sm">
+          <tbody>
+
+            <thead>
+              <td>All Movies</td>
+            </thead>
+            <% if (successMsg) { %>
+            <div class="alert alert-success"><%= successMsg %></div>
+          <% } %>
+
+            <tr class="d-flex flex-wrap justify-content-center">
+              <% for (let i = 0; i < movies.length; i++) { %>
+              <td>
+                <!-- Card -->
+                <div class="card d-flex flex-wrap">
+
+                <!-- Card image -->
+                <img class="card-img-top img-fluid" src="<%= movies[i]['imageUrl'] %>"
+                alt="Card image cap">
+
+                <!-- Card content -->
+                <div class="card-body">
+
+                  <!-- Title -->
+                  <h4 class="card-title"><a><%= movies[i]['title'] %></a></h4>
+                   <!-- Text -->
+                  <p class="card-text"><%= movies[i]['description'] %></p>
+                     <!-- Text -->
+                  <p class="card-text"> Price: <%= movies[i]['price'] || 1000 %></p>
+                  <!-- Button -->
+                  <a href="/movies/add-to-cart/<%= movies[i]._id %>" class="btn btn-primary">Add</a>
+
+                </div>
+
+              </div>
+              <!-- Card -->
+</td>
+              <% } %>
+
+            </tr>
+          </tbody>
+        </table>
+      </main>
+    <!--Main layout-->
+
+    <!--Footer-->
+      <footer>
+
+      </footer>
+    <!--Footer-->
+
   </body>
 </html>
