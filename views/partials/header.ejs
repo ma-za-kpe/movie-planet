@@ -4,17 +4,16 @@
     <div class="container">
   
       <!-- Navbar brand -->
-<<<<<<< HEAD
-=======
 
 
->>>>>>> ec03d5a3fdc2247bfc18b72ee1608662699b8fd4
       <a class="navbar-brand font-weight-bold" href="/movies">MOVIE PLANET</a>
   
       <!-- Collapse button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
         aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon">
+          <div class="n"></div>
+        </span>
       </button>
   
       <!-- Collapsible content -->
@@ -30,22 +29,21 @@
             </a>
           </li>
 
-          <% if(login) { %>
           <li class="nav-item ">
-              <a class="nav-link" href="/buyers/logout">logout</a>
-          </li>
-          <% } else { %>
-          <li class="nav-item ">
+
               <a class="nav-link" href="/buyers/register">Register</a>
           </li>
           <li class="nav-item ">
               <a class="nav-link" href="/buyers/login">Login</a>
+
           </li>
           <% } %>
           <li class="nav-item ">
               <a class="nav-link" href="/shopping-cart">Shopping Cart <span class="badge badge-secondary">0</span></a>
           </li>
 
+
+1          </li>
           <li class="nav-item ">
             <a class="text-light nav-link sellerAdd unique-color text-dark" href="/movies/add-new-movies">ADD MOVIE</a>
         </li>

@@ -41,3 +41,6 @@ table{
 .sellerAdd{
   border-left: 2px solid black;
 }
+.navbar-toggler{
+  background-color: rgba(15, 20, 49, 0.74);
+}
