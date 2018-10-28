@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
-
+require('dotenv/config');
 require('./models/movie');
 require('./models/seller');
 require('./models/buyer');
@@ -24,8 +24,12 @@ const app = express();
 // mongoose.connect('mongodb://localhost:27017/movie-planet', {useNewUrlParser: true});
 
 // connect to mlab database
-if (process.env.NODE_ENV === 'production') { require('dotenv').config(); };
-mongoose.connect(process.env.MLAB_URL, {useNewUrlParser: true});
+var dbURI = 'mongodb://localhost/Loc8r';
+if (process.env.NODE_ENV === 'production') {
+dbURI = 'mongodb://movie-planet-team:moviePlanet2018@ds125302.mlab.com:25302/movie-planet'
+}
+mongoose.connect(dbURI, {useNewUrlParser: true});
+//mongoose.connect(process.env.MLAB_URL, {useNewUrlParser: true});
 
 // add passport local strategy configuration
 require('./config/passport');
