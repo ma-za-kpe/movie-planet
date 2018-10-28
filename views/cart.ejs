@@ -24,22 +24,31 @@
                 </thead>
                 <tr>
                   <td>
+                  <% if(movies) { %>
+                  <% for (let i =0; i < movies.length; i++) { %>
+                  <div class="card">
+    
+                  <!-- Card image -->
+                  <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
+                
+                  <!-- Card content -->
+                  <div class="card-body">
+                
+                    <!-- Title -->
+                    <h4 class="card-title"><a><%= movies[i].movie.title %></a></h4>
+                    <h4 class="card-text"><a>price: $<%= movies[i].price %></a></h4>
+                    <h4 class="card-text"><a>qty: <span class="badge badge-secondary"><%= movies[i].qty %></span></a></h4>
+                      <!-- Button -->
+                    <a href="/checkout" class="btn btn-primary">Remove</a>
+                  </div>
+                  <% } %>
+
+                </div>
+                  <% } else { %>
+                  <div>No items in cart!</div>
+                  <% } %>
                     <!-- Card -->
-    <div class="card">
-    
-      <!-- Card image -->
-      <img class="card-img-top" src="https://mdbootstrap.com/img/Photos/Others/images/43.jpg" alt="Card image cap">
-    
-      <!-- Card content -->
-      <div class="card-body">
-    
-        <!-- Title -->
-        <h4 class="card-title"><a>Card title</a></h4>
-          <!-- Button -->
-        <a href="/checkout" class="btn btn-primary">Remove</a>
-      </div>
-    
-    </div>
+
     <!-- Card -->
                   </td>               
                     </tr>
@@ -53,6 +62,7 @@
             </div>
             <div class="col-4 payments">
              <!-- Title -->
+        <h4 class="card-title"><a>TOTAL PRICE: $<%=totalPrice %> </a></h4>
         <h4 class="card-title"><a>PAYMENT OPTIONS</a></h4>
                 <!-- Group of default radios - option 1 -->
 <div class="custom-control custom-radio">
@@ -73,13 +83,15 @@
       </div>
 
       <!-- Button -->
-      <a href="#" class="btn btn-primary">FINISH</a>
+      <a href="/movies/checkout" class="btn btn-primary">FINISH</a>
 
       <!-- Title -->
       <h5 class="card-title"><a>Download receipt as PDF</a></h5>
 
             </div>
           </div>
+
+
 
     <!--Footer-->
       <footer>

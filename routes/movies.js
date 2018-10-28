@@ -84,7 +84,11 @@ router.get('/add-to-cart/:id', async(req, res, next) => {
 
 //   go to checkout page
 router.get('/cart', (req, res, next) => {
-    res.render('cart');
+    if (!req.session.cart) {
+        res.render('cart', {movies: null});
+    }
+    let cart = new Cart(req.session.cart);
+    res.render('cart', {movies: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
 router.get('/checkout', (req, res, next) => {
