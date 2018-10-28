@@ -83,8 +83,11 @@ router.get('/add-to-cart/:id', async(req, res, next) => {
 });
 
 //   go to checkout page
-router.get('/checkout', (req, res, next) => {
-    res.render('checkout');
+router.get('/cart', (req, res, next) => {
+    res.render('cart');
 });
 
+router.get('/checkout', (req, res, next) => {
+    res.render('checkout');
+})
 module.exports = router;
