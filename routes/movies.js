@@ -84,10 +84,23 @@ router.get('/add-to-cart/:id', async(req, res, next) => {
 
 //   go to checkout page
 router.get('/cart', (req, res, next) => {
-    res.render('cart');
+    if (!req.session.cart) {
+        res.render('cart', {movies: null});
+    }
+    let cart = new Cart(req.session.cart);
+    res.render('cart', {movies: cart.generateArray(), totalPrice: cart.totalPrice});
 });
 
+// go to checkout page
 router.get('/checkout', (req, res, next) => {
-    res.render('checkout');
+    if (!req.session.cart) {
+        res.redirect('/movies/cart');
+    }
+    let cart = new Cart(req.session.cart);
+    res.render('checkout', {totalPrice: cart.totalPrice});
+});
+
+router.post('/checkout', (req, res, next) => {
+    res.send('done checking out')
 })
 module.exports = router;
