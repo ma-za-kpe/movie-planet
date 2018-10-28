@@ -10,9 +10,9 @@
 
     <div class="d-flex flex-column align-items-center mt-5">
     <h1 class="mt-2">Checkout</h1>
-    <h4>You Total: $ totalPrice </h4>
+    <h4>You Total: $ <%= totalPrice %> </h4>
 
-    <form action="" method="post" id="checkout-form">
+    <form action="movies/checkout" method="POST" id="checkout-form">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control form-control-sm" id="name" aria-describedby="emailHelp" placeholder="Enter Name">
