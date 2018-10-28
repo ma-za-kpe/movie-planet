@@ -13,6 +13,7 @@ require('./models/movie');
 require('./models/seller');
 require('./models/buyer');
 
+const indexRouter = require('./routes/index');
 const moviesRouter = require('./routes/movies');
 const sellersRouter = require('./routes/seller');
 const buyersRouter = require('./routes/buyer');
@@ -55,6 +56,7 @@ app.use(function(req, res, next) {
   next();
 });
 
+app.use('/', indexRouter);
 app.use('/movies', moviesRouter);
 app.use('/sellers', sellersRouter);
 app.use('/buyers', buyersRouter);
