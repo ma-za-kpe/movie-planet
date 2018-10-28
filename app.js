@@ -8,7 +8,7 @@ const session = require('express-session');
 const passport = require('passport');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo')(session);
-require('dotenv/config');
+require('dotenv').config();
 require('./models/movie');
 require('./models/seller');
 require('./models/buyer');
