@@ -33,6 +33,12 @@ router.post('/login', passport.authenticate('local-login', {
     failureFlash: true
 }));
 
+//  logout logic
+router.get('/logout', function(req, res, next) {
+    req.logout();
+    res.redirect('/movies');
+  });
+
 
 // register buyers
 // router.get('/register', async(req, res, next) => {
