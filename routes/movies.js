@@ -5,11 +5,11 @@ const Movie = mongoose.model('Movie');
 
 /* GET movies listing. */
 router.get('/', async(req, res, next) => {
-
+    var successMsg = req.flash('success')[0];
   const movies = await Movie.find().sort('title')
 //   res.send(movies);
 
-    res.render('index', {movies: movies});
+    res.render('index', {movies: movies, successMsg: successMsg});
 });
 
 // GET Show add new movie form

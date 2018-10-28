@@ -1,16 +1,17 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var mongoose = require('mongoose');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const session = require('express-session');
+const passport = require('passport');
+const flash = require('connect-flash');
 require('dotenv/config');
 require('./models/movie');
 require('./models/seller');
 require('./models/buyer');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var moviesRouter = require('./routes/movies');
 var sellersRouter = require('./routes/seller');
 var buyersRouter = require('./routes/buyer');
@@ -24,8 +25,7 @@ var app = express();
 mongoose.connect(process.env.MLAB_URL, {useNewUrlParser: true});
 
 // add passport local strategy configuration
-require('./config/passportBuyer');
-require('./config/passportSeller');
+require('./config/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -35,10 +35,16 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({
+  secret: 'expressseceret',
+  resave: false,
+  saveUninitialized: false
+}));
+app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
 app.use('/sellers', sellersRouter);
 app.use('/buyers', buyersRouter);
